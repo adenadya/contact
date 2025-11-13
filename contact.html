@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MoviesHub — Gabung</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="main-nav">
+      <div class="logo">MoviesHub</div>
+      <ul class="nav-list">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="movies.html">Film</a></li>
+        <li><a href="actors.html">Aktor</a></li>
+        <li><a href="reviews.html">Ulasan</a></li>
+        <li><a href="contact.html" class="active">Gabung</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="join" aria-labelledby="join-title">
+      <h1 id="join-title">Join MoviesHub</h1>
+      <p>Daftar untuk membuat watchlist, mengirim ulasan, dan berinteraksi.</p>
+
+      <form id="join-form" class="join-form" action="#" onsubmit="return validateJoinForm();">
+        <label for="username">Name (Text input)</label>
+        <input id="username" name="username" type="text" placeholder="Your name" required>
+
+        <label for="pwd">Password (Password input)</label>
+        <input id="pwd" name="pwd" type="password" placeholder="Choose a password" minlength="6" required>
+
+        <label for="bio">Bio (Text area)</label>
+        <textarea id="bio" name="bio" rows="4" placeholder="Tell us about your favourite films" required></textarea>
+
+        <fieldset>
+          <legend>Gender (Radio)</legend>
+          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="other"> Other</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Favorite genres (Checkbox)</legend>
+          <label><input type="checkbox" name="genre" value="action"> Action</label>
+          <label><input type="checkbox" name="genre" value="drama"> Drama</label>
+          <label><input type="checkbox" name="genre" value="comedy"> Comedy</label>
+        </fieldset>
+
+        <label for="country">Country (Select)</label>
+        <select id="country" name="country" required>
+          <option value="">Choose...</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="USA">USA</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <!-- inline style on submit to show example -->
+        <button type="submit" class="btn primary" style="background: linear-gradient(90deg,var(--accent-red), #8b0a12);">Create account</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 MoviesHub</p>
+  </footer>
+
+  <script>
+    function validateJoinForm() {
+      var name = document.getElementById('username').value.trim();
+      var pwd = document.getElementById('pwd').value;
+      var bio = document.getElementById('bio').value.trim();
+      var country = document.getElementById('country').value;
+      var radios = document.querySelectorAll('input[name="gender"]');
+      var genres = document.querySelectorAll('input[name="genre"]:checked');
+
+      if (name.length < 2) { alert('Name must be at least 2 characters.'); return false; }
+      if (pwd.length < 6) { alert('Password must be at least 6 characters.'); return false; }
+      if (bio.length < 10) { alert('Bio must be at least 10 characters.'); return false; }
+      var genderChecked = Array.from(radios).some(r => r.checked);
+      if (!genderChecked) { alert('Please select a gender.'); return false; }
+      if (genres.length === 0) { alert('Select at least one favorite genre.'); return false; }
+      if (!country) { alert('Please select a country.'); return false; }
+
+      alert('Registration submitted (demo). Thank you!');
+      return false;
+    }
+  </script>
+</body>
+</html>
